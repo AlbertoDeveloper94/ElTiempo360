@@ -33,3 +33,26 @@ async function getCityWeather(latitude, longitude) {
     weatherHourly: dataWeatherCity.hourly,
   };
 }
+async function searchWeatherCity() {
+  let city = document.getElementById("searchCity").value;
+
+  if (city == "") {
+    city = "Barcelona";
+  }
+  if (!city) {
+    return alert("Escribe una ciudad");
+  }
+
+  const cityCoordinates = await GetCoordinatesCity(city);
+
+  if (!cityCoordinates) {
+    alert("Ciudad no encontrada");
+    return;
+  }
+
+  const weather = await getCityWeather(
+    cityCoordinates.latitude,
+    cityCoordinates.longitude,
+  );
+  ShowWeather(cityCoordinates, weather);
+}
