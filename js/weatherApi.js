@@ -56,3 +56,64 @@ async function searchWeatherCity() {
   );
   ShowWeather(cityCoordinates, weather);
 }
+
+function ShowWeather(cityCoordinates, weather) {
+  const { name, country_code } = cityCoordinates;
+  console.log(country_code)
+  const {
+    temperature_2m,
+    weathercode,
+    wind_speed_10m,
+    relative_humidity_2m,
+    rain,
+  } = weather.currentWeather;
+  const { precipitation_probability } = weather.weatherHourly;
+
+  document.getElementById("currentCity").innerHTML = `
+    <div class="flex">
+      <img
+        src="https://flagcdn.com/w40/${country_code.toLowerCase()}.png"
+        class="rounded mr-2"
+      />
+      <h1 class="text-end text-2xl font-[400]">${name}</h1>
+    </div>
+  `;
+  document.getElementById("weatherBanner").innerHTML = `
+    <time datetime="" class="text-5xl mt-10 opacity-40">${new Date().toLocaleString(
+      "es",
+    )}</time>
+        <img src="${weatherCodes(weathercode)[1]}" class="w-1/3">
+        
+        <div>
+            <p>
+                <strong class="text-8xl">${temperature_2m}º </strong>
+            </p> 
+            <p class="text-3xl text-center mt-3 text-blue-600">${
+              weatherCodes(weathercode)[0]
+            }</p>
+        </div>
+        <dl class="flex justify-around w-full text-2xl text-center">
+            <div>
+                <img src="assets/icons/wind.png" class="w-20"/>
+                <div class="flex flex-col">
+                  <dt>${wind_speed_10m} km/h</dt>
+                  <dd>Viento</dd>
+                </div>
+            </div>
+            <div>
+                <img src="assets/icons/humidity.png" class="w-20"/>
+                <div class="flex flex-col">
+                  <dt>${relative_humidity_2m} %</dt>
+                  <dd>Humedad</dd>
+                </div>
+            </div>
+            <div>
+                <img src="assets/icons/rain.png" class="w-20"/>
+                <div class="flex flex-col">
+                  <dt>${precipitation_probability[0]} %</dt>
+                  <dd>Lluvia</dd>
+                </div>
+            </div>
+        </dl>
+  `;
+}
