@@ -1,6 +1,21 @@
 const weatherApiUrl =
   "https://api.open-meteo.com/v1/forecast?latitude=41.3888&longitude=2.159&hourly=temperature_2m&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m,rain";
 
+function weatherCodes(code) {
+  const codes = {
+    0: ["Soleado", "assets/icons/sun.png"],
+    3: ["Nublado", "assets/icons/cloud.png"],
+    45: ["Niebla", "assets/icons/fog.svg"],
+    61: ["Lluvia ligera", "assets/icons/light-rain.png"],
+    63: ["Lluvia moderada", "assets/icons/rain.png"],
+    65: ["Lluvia intensa", "assets/icons/heavy-rain.png"],
+    73: ["Nieve moderada", "assets/icons/snow.png"],
+    95: ["Tormenta", "assets/icons/storm.png"],
+  };
+  return codes[code];
+}
+
+
 async function GetCoordinatesCity(city) {
   try {
     const responseCity = await fetch(
