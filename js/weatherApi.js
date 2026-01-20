@@ -117,3 +117,11 @@ function ShowWeather(cityCoordinates, weather) {
         </dl>
   `;
 }
+
+const buttonWeatherSearch = document.getElementById("submitCity");
+buttonWeatherSearch.addEventListener("click", searchWeatherCity);
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("searchCity").value = "Barcelona";
+  searchWeatherCity();
+});
