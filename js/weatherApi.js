@@ -84,16 +84,15 @@ function ShowWeather(cityCoordinates, weather) {
   } = weather.currentWeather;
   const { precipitation_probability } = weather.weatherHourly;
 
-  document.getElementById("currentCity").innerHTML = `
-    <div class="flex">
+ 
+  document.getElementById("weatherBanner").innerHTML = `
+    <div class="flex mt-7">
       <img
         src="https://flagcdn.com/w40/${country_code.toLowerCase()}.png"
         class="rounded mr-2"
       />
-      <h1 class="text-end text-2xl font-[400]">${name}</h1>
+      <h1 class="text-end text-4xl font-[400]">${name}</h1>
     </div>
-  `;
-  document.getElementById("weatherBanner").innerHTML = `
     <time datetime="" class="text-5xl mt-10 opacity-40">${new Date().toLocaleString(
       "es",
     )}</time>
@@ -108,22 +107,28 @@ function ShowWeather(cityCoordinates, weather) {
             }</p>
         </div>
         <dl class="flex justify-around w-full text-2xl text-center">
-            <div>
-                <img src="assets/icons/wind.png" class="w-20"/>
+            <div class="text-center">
+                <div class="flex justify-center">
+                  <img src="assets/icons/wind.png" class="w-10"/>
+                </div>
                 <div class="flex flex-col">
                   <dt>${wind_speed_10m} km/h</dt>
                   <dd>Viento</dd>
                 </div>
             </div>
             <div>
-                <img src="assets/icons/humidity.png" class="w-20"/>
+                <div class="flex justify-center">
+                  <img src="assets/icons/humidity.png" class="w-10"/>
+                </div>
                 <div class="flex flex-col">
                   <dt>${relative_humidity_2m} %</dt>
                   <dd>Humedad</dd>
                 </div>
             </div>
             <div>
-                <img src="assets/icons/rain.png" class="w-20"/>
+                <div class="flex justify-center">
+                  <img src="assets/icons/rain.png" class="w-10"/>
+                </div>
                 <div class="flex flex-col">
                   <dt>${precipitation_probability[0]} %</dt>
                   <dd>Lluvia</dd>
