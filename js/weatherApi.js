@@ -1,5 +1,5 @@
 const weatherApiUrl =
-  "https://api.open-meteo.com/v1/forecast?latitude=41.3888&longitude=2.159&hourly=temperature_2m&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m,rain";
+  "https://api.open-meteo.com/v1/forecast?latitude=41.3888&longitude=2.159&hourly=temperature_2m,weathercode,precipitation_probability&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m,rain";
 
 function weatherCodes(code) {
   const codes = {
@@ -14,7 +14,6 @@ function weatherCodes(code) {
   };
   return codes[code];
 }
-
 
 async function GetCoordinatesCity(city) {
   try {
@@ -74,7 +73,6 @@ async function searchWeatherCity() {
 
 function ShowWeather(cityCoordinates, weather) {
   const { name, country_code } = cityCoordinates;
-  console.log(country_code)
   const {
     temperature_2m,
     weathercode,
@@ -82,9 +80,33 @@ function ShowWeather(cityCoordinates, weather) {
     relative_humidity_2m,
     rain,
   } = weather.currentWeather;
-  const { precipitation_probability } = weather.weatherHourly;
+  const { precipitation_probability, time } = weather.weatherHourly;
 
- 
+  const containerWeatherHourly = document.getElementById("weatherHourly");
+  containerWeatherHourly.innerHTML = "";
+
+  const hoursSave = [];
+  const currentHour = new Date().getHours();
+
+  for (let i = 0; i < 24; i++) {
+    hoursSave.push({
+      hour: i === 0 ? "Ahora" : `${(currentHour + i)%24}:00`,
+      weatherIcon: weatherCodes(weathercode)[1],
+      temperature: temperature_2m,
+    });
+    const hourlyCard = document.createElement("div");
+
+    hourlyCard.className =
+      "min-w-[120px]rounded-2xl bg-blue-500 text-center text-white";
+    hourlyCard.innerHTML = `
+   
+        <h4 class="text-3xl p-3">${hoursSave[i].hour}</h4>
+        <img src=${hoursSave[i].weatherIcon} class="w-[80%] m-auto p-3" />
+        <time datetime="" class="block p-3 font-bold text-3xl">${hoursSave[i].temperature} º</time>
+    `;
+    containerWeatherHourly.appendChild(hourlyCard);
+  }
+
   document.getElementById("weatherBanner").innerHTML = `
     <div class="flex mt-7">
       <img
