@@ -4,12 +4,18 @@ const weatherApiUrl =
 function weatherCodes(code) {
   const codes = {
     0: ["Soleado", "assets/icons/sun.png"],
+    1: ["Mayormente despejado", "assets/icons/cloudy.png"],
+    2: ["Parcialmente nublado", "assets/icons/cloudy_middle.png"],
     3: ["Nublado", "assets/icons/cloud.png"],
     45: ["Niebla", "assets/icons/fog.svg"],
+    51: ["Llovizna ligera", "assets/icons/lightDrizzle.png"],
+    53: ["Llovizna moderada", "assets/icons/mediumDrizzle.png"],
+    55: ["Llovizna intensa", "assets/icons/heavyDrizzle.png"],
     61: ["Lluvia ligera", "assets/icons/light-rain.png"],
     63: ["Lluvia moderada", "assets/icons/rain.png"],
     65: ["Lluvia intensa", "assets/icons/heavy-rain.png"],
-    73: ["Nieve moderada", "assets/icons/snow.png"],
+    73: ["Nieve", "assets/icons/snow.png"],
+    77: ["Granizo", "assets/icons/snowGrain.png"],
     95: ["Tormenta", "assets/icons/storm.png"],
   };
   return codes[code];
@@ -90,14 +96,14 @@ function ShowWeather(cityCoordinates, weather) {
 
   for (let i = 0; i < 24; i++) {
     hoursSave.push({
-      hour: i === 0 ? "Ahora" : `${(currentHour + i)%24}:00`,
+      hour: i === 0 ? "Ahora" : `${(currentHour + i) % 24}:00`,
       weatherIcon: weatherCodes(weathercode)[1],
       temperature: temperature_2m,
     });
     const hourlyCard = document.createElement("div");
 
     hourlyCard.className =
-      "min-w-[120px]rounded-2xl bg-blue-500 text-center text-white";
+      "min-w-[120px] rounded-2xl bg-blue-500 text-center text-white";
     hourlyCard.innerHTML = `
    
         <h4 class="text-3xl p-3">${hoursSave[i].hour}</h4>
@@ -115,14 +121,14 @@ function ShowWeather(cityCoordinates, weather) {
       />
       <h1 class="text-end text-4xl font-[400]">${name}</h1>
     </div>
-    <time datetime="" class="text-5xl mt-10 opacity-40">${new Date().toLocaleString(
+    <time datetime="" class="text-3xl mt-10 opacity-40">${new Date().toLocaleString(
       "es",
     )}</time>
         <img src="${weatherCodes(weathercode)[1]}" class="w-1/3">
         
         <div>
             <p>
-                <strong class="text-8xl">${temperature_2m}º </strong>
+                <strong class="text-5xl">${temperature_2m}º </strong>
             </p> 
             <p class="text-3xl text-center mt-3 text-blue-600">${
               weatherCodes(weathercode)[0]
