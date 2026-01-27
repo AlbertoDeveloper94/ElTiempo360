@@ -86,8 +86,8 @@ function ShowWeather(cityCoordinates, weather) {
     relative_humidity_2m,
     rain,
   } = weather.currentWeather;
-  const { precipitation_probability, time } = weather.weatherHourly;
-
+  const { precipitation_probability, } = weather.weatherHourly;
+console.log(temperature_2m)
   const containerWeatherHourly = document.getElementById("weatherHourly");
   containerWeatherHourly.innerHTML = "";
 
@@ -98,8 +98,9 @@ function ShowWeather(cityCoordinates, weather) {
     hoursSave.push({
       hour: i === 0 ? "Ahora" : `${(currentHour + i) % 24}:00`,
       weatherIcon: weatherCodes(weathercode)[1],
-      temperature: temperature_2m,
+      temperature_2m:weather.weatherHourly.temperature_2m,
     });
+    
     const hourlyCard = document.createElement("div");
 
     hourlyCard.className =
@@ -108,18 +109,18 @@ function ShowWeather(cityCoordinates, weather) {
    
         <h4 class="text-3xl p-3">${hoursSave[i].hour}</h4>
         <img src=${hoursSave[i].weatherIcon} class="w-[80%] m-auto p-3" />
-        <time datetime="" class="block p-3 font-bold text-3xl">${hoursSave[i].temperature} º</time>
+        <time datetime="" class="block p-3 font-bold text-3xl">${hoursSave[i].temperature_2m} º</time>
     `;
     containerWeatherHourly.appendChild(hourlyCard);
   }
 
   document.getElementById("weatherBanner").innerHTML = `
-    <div class="flex mt-7">
+    <div class="flex">
       <img
         src="https://flagcdn.com/w40/${country_code.toLowerCase()}.png"
         class="rounded mr-2"
       />
-      <h1 class="text-end text-4xl font-[400]">${name}</h1>
+      <h2 class="text-end text-4xl font-[400]">${name}</h2>
     </div>
     <time datetime="" class="text-3xl mt-10 opacity-40">${new Date().toLocaleString(
       "es",
@@ -127,7 +128,7 @@ function ShowWeather(cityCoordinates, weather) {
         <img src="${weatherCodes(weathercode)[1]}" class="w-1/3">
         
         <div>
-            <p>
+            <p class="text-center">
                 <strong class="text-5xl">${temperature_2m}º </strong>
             </p> 
             <p class="text-3xl text-center mt-3 text-blue-600">${

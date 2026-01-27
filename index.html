@@ -12,22 +12,20 @@
   <body
     class="bg-gradient-to-b from-[#0F1921] via-[#1A2633] to-[#0F1921] min-h-screen"
   >
-    <div class="text-white w-[90%] mx-auto">
+    <div class="text-white">
       <header
         id="weatherMenu"
-        class="flex justify-between items-center p-8 border-b-2 border-white/30 w-full"
+        class="flex flex-col justify-evenly items-center p-8 border-b-2 border-white/30"
       >
-        <a href="" class="w-1/6">
-          <i class="fa-solid fa-location-dot text-blue-600 text-3xl"></i>
-        </a>
-        <div class="w-2/6 flex">
+        <h1 class="text-2xl text-blue-500">Tiempo 360º</h1>
+        <div class=" flex w-full">
           <input
             type="text"
-            class="text-black w-36 rounded mr-2"
+            class="text-black flex-1 rounded mr-2"
             placeholder="Escribe una ciudad"
             id="searchCity"
           />
-          <button id="submitCity" class="w-full bg-purple-500 p-2 rounded">
+          <button id="submitCity" class=" bg-purple-500 p-2 rounded flex-1">
             Buscar
           </button>
         </div>
@@ -49,7 +47,3 @@
     <script src="js/weatherApi.js"></script>
   </body>
 </html>
-
-
-  
-</div>
