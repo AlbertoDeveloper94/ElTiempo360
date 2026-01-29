@@ -18,14 +18,14 @@
         class="flex flex-col justify-evenly items-center p-8 border-b-2 border-white/30"
       >
         <h1 class="text-2xl text-blue-500">Tiempo 360º</h1>
-        <div class=" flex w-full">
+        <div class="flex w-full">
           <input
             type="text"
             class="text-black flex-1 rounded mr-2"
             placeholder="Escribe una ciudad"
             id="searchCity"
           />
-          <button id="submitCity" class=" bg-purple-500 p-2 rounded flex-1">
+          <button id="submitCity" class="bg-purple-500 p-2 rounded flex-1">
             Buscar
           </button>
         </div>
@@ -37,7 +37,14 @@
         ></section>
         <section>
           <h2 class="text-3xl">Por horas</h2>
-          <div id="weatherHourly" class="flex gap-4 px-4 py-4 overflow-x-auto snap-x snap-mandatory w-[90%] m-auto mt-10"></div>
+          <div
+            id="weatherHourly"
+            class="flex gap-4 px-4 py-4 overflow-x-auto snap-x snap-mandatory w-[90%] m-auto mt-10"
+          ></div>
+        </section>
+        <section>
+          <h2 class="text-3xl">Por semana</h2>
+          <div id="weatherWeek"></div>
         </section>
       </main>
       <footer></footer>
@@ -47,3 +54,5 @@
     <script src="js/weatherApi.js"></script>
   </body>
 </html>
+
+
