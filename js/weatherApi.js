@@ -41,7 +41,7 @@ async function GetCoordinatesCity(city) {
 }
 async function getCityWeather(latitude, longitude) {
   const response = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weathercode,relative_humidity_2m,wind_speed_10m,rain&hourly=precipitation_probability,temperature_2m,weathercode&daily=temperature_2m_mean,precipitation_sum`,
+    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weathercode,relative_humidity_2m,wind_speed_10m,rain&hourly=precipitation_probability,temperature_2m,weathercode&daily=temperature_2m_mean,weathercode`,
   );
   const dataWeatherCity = await response.json();
   console.log(dataWeatherCity);
